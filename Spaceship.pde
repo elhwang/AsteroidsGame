@@ -13,4 +13,10 @@ class Spaceship extends Floater{
     xCorners[2] = -16;
     yCorners[2] = 16;
   }
+  public double getX(){
+    return myCenterX;
+  }
+  public double getY(){
+    return myCenterY;
+  }
 }
