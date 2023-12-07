@@ -1,37 +1,69 @@
-class Asteroid extends Floater{
-  private double rotSpeed= (Math.random()*11)-5;
-  public Asteroid(){
-    corners = 6;
-    xCorners =  new int [corners];
-    yCorners = new int [corners];
-    xCorners[0] = -24+((int)(Math.random()*10)-5);
-    yCorners[0] = -32+((int)(Math.random()*10)-5);
-    xCorners[1] = 28+((int)(Math.random()*10)-5);
-    yCorners[1] = -32+((int)(Math.random()*10)-5);
-    xCorners[2] = 36+((int)(Math.random()*10)-5);
-    yCorners[2] = 0+((int)(Math.random()*10)-5);
-    xCorners[3] = 20+((int)(Math.random()*10)-5);
-    yCorners[3] = 28+((int)(Math.random()*10)-5);
-    xCorners[4] = -4+((int)(Math.random()*10)-5);
-    yCorners[4] = 23+((int)(Math.random()*10)-5);
-    xCorners[5] = -20+((int)(Math.random()*10)-5);
-    yCorners[5] = 0+((int)(Math.random()*10)-5);
-    myColor = color(#C6BCBC);
-    myCenterX = Math.random()*1000;
-    myCenterY = Math.random()*1000;
-    myXspeed = Math.random()*5;
-    myYspeed = Math.random()*5;
-    myPointDirection = 90;
+
+//your variable declSarations here
+star [] nightsky = new star [500];
+Spaceship bob = new Spaceship();
+ArrayList <Asteroid> Rocks = new ArrayList <Asteroid>();
+ArrayList <Bullet> Shots = new ArrayList <Bullet>();
+public void setup()
+{
+  size(1000,1000);
+  for(int i = 0; i < nightsky.length; i++){
+    nightsky[i] = new star();
   }
-    public void move ()   //move the floater in the current direction of travel
-  {      
-    turn(rotSpeed);
-    super.move();
+  for(int i =0; i < 14; i++){
+    Rocks.add(new Asteroid());
   }
-  public double getX(){
-    return myCenterX;
+}
+
+public void draw()
+{
+  background(0);
+for(int i = 0; i < nightsky.length; i++){
+    nightsky[i].show();
+}  
+   for(int i =0; i < Shots.size(); i++){
+     Shots.get(i).move();
+     Shots.get(i).show();
   }
-  public double getY(){
-    return myCenterY;
+ for(int i =0; i < Rocks.size(); i++){
+   Rocks.get(i).move();
+   Rocks.get(i).show();
+   float d = dist((float)bob.getX(), (float)bob.getY(), (float)Rocks.get(i).getX(),(float)Rocks.get(i).getY());
+   if(d<40)
+   Rocks.remove(i);
+ }
+  for(int i = 0; i < Shots.size();i++){
+    for(int j = 0; j < Rocks.size(); j++){
+      double d = dist((float)Rocks.get(j).getX(), (float)Rocks.get(j).getY(), (float)Shots.get(i).getX(),(float)Shots.get(i).getY());
+    if(d<25){
+    Shots.remove(i);
+    Rocks.remove(j);
+    break;
+    }
   }
+   }
+  bob.show();
+ bob.move();
+}
+
+public void keyPressed(){
+  if(key == 'w'){
+   bob.accelerate(0.3);
+   
+  }
+  if(key == 's'){
+  bob.accelerate(-0.3);
+  }
+  if(key == 'a'){
+  bob.turn(-10);
+  }
+  if(key == 'd'){
+  bob.turn(10);
+  }
+  if(key== 'f'){
+    bob.hyper();
+  }
+  if(key == ' '){
+    Shots.add(new Bullet(bob));
+  } 
 }
