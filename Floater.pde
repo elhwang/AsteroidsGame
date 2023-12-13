@@ -17,7 +17,6 @@ class Floater //Do NOT modify the Floater class! Make changes in the Spaceship c
     myXspeed += ((dAmount) * Math.cos(dRadians));    
     myYspeed += ((dAmount) * Math.sin(dRadians));
     fill(#001AF7);
-    System.out.println(bob.xCorners[0]);
   }  
   public void turn (double degreesOfRotation)  
   {    
