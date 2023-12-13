@@ -1,6 +1,6 @@
 class Bullet extends Floater{
 public Bullet(Spaceship bob){
-  myColor = color(#FFEB52);
+  myColor = color(255);
   myCenterX = bob.getX();
   myCenterY = bob.getY();
   myXspeed = bob.getXspeed();
