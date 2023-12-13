@@ -60,7 +60,7 @@ public void keyPressed(){
   if(key == 'd'){
   bob.turn(10);
   }
-  if(key== 'f'){
+  if(key== ' '){
     bob.hyper();
   }
   if(key == 'r'){
