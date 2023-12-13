@@ -63,7 +63,7 @@ public void keyPressed(){
   if(key== 'f'){
     bob.hyper();
   }
-  if(key == ' '){
+  if(key == 'r'){
     Shots.add(new Bullet(bob));
   } 
 }
