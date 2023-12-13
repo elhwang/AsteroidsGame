@@ -1,4 +1,3 @@
-
 class Bullet extends Floater{
 public Bullet(Spaceship bob){
   myColor = color(#FFEB52);
